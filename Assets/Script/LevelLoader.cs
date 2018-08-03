@@ -11,7 +11,7 @@ public class LevelLoader : MonoBehaviour {
         get { return m_isGameOver; }
         set { m_isGameOver = value; }
     }
-public void Update()
+    public void Update()
     {
         if (m_isGameOver && Input.GetKeyDown(KeyCode.R))
         {
