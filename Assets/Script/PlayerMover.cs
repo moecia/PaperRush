@@ -38,7 +38,6 @@ public class PlayerMover : MonoBehaviour {
         if(m_isChangingGravity)
         {
             changeGravity();
-            Jump();
         }
     }
     public void MoveToPosition(Vector3 goal)
