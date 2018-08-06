@@ -14,32 +14,16 @@ public class PlayerStatus : MonoBehaviour
     [SerializeField]
     private bool godMode = false;
 
-    public Pose runingPose;
-    public Pose poseUp;
-    public Pose poseDown;
-    public Pose poseLeft;
-    public Pose poseRight;
     private Pose currentPose;
-
     public enum PlayerSpot { Left, Center, Right };
     private PlayerSpot currentSpot = PlayerSpot.Center;
-
-    public AudioManager audioManager;
-    public SpriteManager spriteManager;
 
     private void Start()
     {
         currentHealth = maxhealth;
         currentSpeed = initialSpeed;
 
-        runingPose = new Pose(Pose.PlayerPose.Runing, new AudioClip(), spriteManager.running);
-        poseUp = new Pose(Pose.PlayerPose.Runing, audioManager.poseUp, spriteManager.poseUp);
-        poseDown = new Pose(Pose.PlayerPose.Runing, audioManager.poseDown, spriteManager.poseDown);
-        poseLeft = new Pose(Pose.PlayerPose.Runing, audioManager.poseLeft, spriteManager.poseLeft);
-        poseRight = new Pose(Pose.PlayerPose.Runing, audioManager.poseRight, spriteManager.poseRight);
-
         currentPose = new Pose();
-        currentPose = runingPose;
 
     }
 
@@ -57,39 +41,4 @@ public class PlayerStatus : MonoBehaviour
     {
         return currentPose;
     }
-
-    private void OnTriggerEnter(Collider other)
-    {
-        if(!godMode)
-        {
-            if (other.CompareTag("wall"))
-            {
-
-            }
-        }
-    }
-}
-
-public class Pose
-{
-    public enum PlayerPose
-    {
-        Runing,
-        Yoga_Up,
-        Mickeal_Right,
-        WiiFit_Left,
-        SpiltFoot_Down
-    }
-    private PlayerPose currentPose { get; set; }
-    public AudioClip poseAudio { get; set; }
-    public Sprite poseSprite { get; set; }
-
-    public Pose(PlayerPose playerPose, AudioClip poseAudio, Sprite poseSprite)
-    {
-        this.currentPose = currentPose;
-        this.poseAudio = poseAudio;
-        this.poseSprite = poseSprite;
-    }
-
-    public Pose() {}
 }

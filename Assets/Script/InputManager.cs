@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(Command))]
 public class InputManager : MonoBehaviour {
 
     public Command command;

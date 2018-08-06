@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class SpriteManager : MonoBehaviour
 {
+    [Header("Player Sprites")]
     public Sprite running;
     public Sprite poseUp;
     public Sprite poseDown;
