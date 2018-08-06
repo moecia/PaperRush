@@ -64,7 +64,6 @@ public class Pose: Action
         playerAudio.PlayOneShot(poseAudio);
     }
 
-
     public Pose() { }
 }
 
@@ -130,19 +129,26 @@ public class Move: Action
         playerAudio.PlayOneShot(moveSound);
         if (moveDir == MoveDirection.Left)
         {
-            if (player.position.x == moveSpot_C.position.x)
-                player.position = new Vector2(moveSpot_L.position.x, player.position.y);
+            if (player.localPosition.x == moveSpot_C.localPosition.x)
+                player.localPosition = new Vector2(moveSpot_L.localPosition.x, player.localPosition.y);
 
-            else if (player.position.x == moveSpot_R.position.x)
-                player.position = new Vector2(moveSpot_C.position.x, player.position.y);
+            else if (player.localPosition.x == moveSpot_R.localPosition.x)
+                player.localPosition = new Vector2(moveSpot_C.localPosition.x, player.localPosition.y);
         }
 
         else if (moveDir == MoveDirection.Right)
         {
-            if (player.position.x == moveSpot_C.position.x)
-                player.position = new Vector2(moveSpot_R.position.x, player.position.y);
-            else if (player.position.x == moveSpot_L.position.x)
-                player.position = new Vector2(moveSpot_C.position.x, player.position.y);
+            if (player.localPosition.x == moveSpot_C.localPosition.x)
+                player.localPosition = new Vector2(moveSpot_R.localPosition.x, player.localPosition.y);
+            else if (player.localPosition.x == moveSpot_L.localPosition.x)
+                player.localPosition = new Vector2(moveSpot_C.localPosition.x, player.localPosition.y);
         }
     }
+
+    //public void UpdateMoveSpot(Transform moveSpot_L, Transform moveSpot_C, Transform moveSpot_R)
+    //{
+    //    this.moveSpot_L = moveSpot_L;
+    //    this.moveSpot_C = moveSpot_C;
+    //    this.moveSpot_R = moveSpot_R;
+    //}
 }

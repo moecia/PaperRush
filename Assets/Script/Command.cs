@@ -5,7 +5,7 @@ using UnityEngine;
 public class Command : MonoBehaviour
 {
     public ActionManager actionManager;
-    public float poseDuration = 2.0f;
+    public float poseDuration = .25f;
 
     public void MoveLeft()
     {
