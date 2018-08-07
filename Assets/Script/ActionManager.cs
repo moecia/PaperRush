@@ -44,7 +44,7 @@ public class ActionManager : MonoBehaviour
     }
 }
 
-public class Action
+public class PlayerAction
 {
     protected Transform player;
     protected PlayerStatus playerStatus;
@@ -54,7 +54,7 @@ public class Action
     protected Sprite poseSprite;
 }
 
-public class Pose: Action
+public class Pose: PlayerAction
 {
     PlayerStatus.PlayerPose pose;
     public Pose(PlayerStatus.PlayerPose pose, PlayerStatus playerStatus, SpriteRenderer playerSprite, AudioSource playerAudio, AudioClip poseAudio, Sprite poseSprite)
@@ -77,7 +77,7 @@ public class Pose: Action
     public Pose() { }
 }
 
-public class Jump : Action
+public class Jump : PlayerAction
 {
     private float jumpSpeed;
     private float distToGround;
@@ -110,7 +110,7 @@ public class Jump : Action
 
 }
 
-public class Move: Action
+public class Move: PlayerAction
 {
     public enum MoveDirection
     {

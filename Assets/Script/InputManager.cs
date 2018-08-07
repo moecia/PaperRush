@@ -1,13 +1,22 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
+using DigitalRubyShared;
 
 [RequireComponent(typeof(Command))]
 public class InputManager : MonoBehaviour {
 
     public Command command;
-    public enum M_Platform { iOS, Android, PC };
-    public M_Platform selectedPlatform = M_Platform.PC;
+    public enum ControlMethods { TouchScreen, TouchPad, Keyboard, Any };
+    public ControlMethods selectedControl = ControlMethods.Keyboard;
+
+    [Header("Touchscreen Inputs")]
+    private int swipeTouchCount = 1;
+    [Tooltip("Controls how the swipe gesture ends. See SwipeGestureRecognizerSwipeMode enum for more details.")]
+    public SwipeGestureRecognizerEndMode swipeMode = SwipeGestureRecognizerEndMode.EndImmediately;
+    private SwipeGestureRecognizer swipe;
+
     // Use this for initialization
     void Start()
     {
@@ -15,17 +24,47 @@ public class InputManager : MonoBehaviour {
         {
             print("Command methods not found, you must assign one.");
         }
+        InitializeTouchScreenInput();
+    }
+
+    void InitializeTouchScreenInput()
+    {
+        swipe = new SwipeGestureRecognizer();
+        swipe.StateUpdated += SwipeUpdated;
+        swipe.DirectionThreshold = 0;
+        swipe.MinimumNumberOfTouchesToTrack = swipe.MaximumNumberOfTouchesToTrack = swipeTouchCount;
+        FingersScript.Instance.AddGesture(swipe);
+        TapGestureRecognizer tap = new TapGestureRecognizer();
+        tap.StateUpdated += TapUpdated;
+        FingersScript.Instance.AddGesture(tap);
+    }
+
+    void SwipeUpdated(DigitalRubyShared.GestureRecognizer gesture)
+    {
+        SwipeGestureRecognizer swipe = gesture as SwipeGestureRecognizer;
+        if (swipe.State == GestureRecognizerState.Ended)
+        {
+            ScreenInput();
+        }
+    }
+
+    void TapUpdated(DigitalRubyShared.GestureRecognizer gesture)
+    {
+        if (gesture.State == GestureRecognizerState.Ended)
+            Debug.Log("Tap");
     }
 
     // Update is called once per frame
     void Update()
     {
-        switch (selectedPlatform)
+        swipe.MinimumNumberOfTouchesToTrack = swipe.MaximumNumberOfTouchesToTrack = swipeTouchCount;
+        swipe.EndMode = swipeMode;
+
+        switch (selectedControl)
         {
-            case M_Platform.PC:
+            case ControlMethods.Keyboard:
                 KeyboardInput();
                 break;
-
         }
     }
 
@@ -45,5 +84,17 @@ public class InputManager : MonoBehaviour {
             command.MakePoseRight();
         else if (Input.GetKeyDown(KeyCode.Space))
             command.Jump();
+    }
+
+    private void ScreenInput()
+    {
+        if (swipe.EndDirection == SwipeGestureRecognizerDirection.Up)
+            command.MakePoseUp();
+        else if (swipe.EndDirection == SwipeGestureRecognizerDirection.Down)
+            command.MakePoseDown();
+        else if (swipe.EndDirection == SwipeGestureRecognizerDirection.Left)
+            command.MakePoseLeft();
+        else if (swipe.EndDirection == SwipeGestureRecognizerDirection.Right)
+            command.MakePoseRight();
     }
 }

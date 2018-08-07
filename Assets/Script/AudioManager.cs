@@ -13,13 +13,9 @@ public class AudioManager : MonoBehaviour
     public AudioClip jump;
     public AudioClip getHit;
     public AudioClip dead;
-    [Space(10)]
-    [Header("Background Music")]
-    public AudioClip bgm;
 
     public AudioClip empty;
 
-    public AudioSource bgmPlayer;
     void Awake()
     {
         poseUp = Resources.Load<AudioClip>("Ya");
@@ -30,11 +26,9 @@ public class AudioManager : MonoBehaviour
         jump = Resources.Load<AudioClip>("JumpSound");
         getHit = Resources.Load<AudioClip>("Hit");
         dead = Resources.Load<AudioClip>("GameOver");
-        bgm = Resources.Load<AudioClip>("BGM");
     }
 
     private void Start()
     {
-        
     }
 }
