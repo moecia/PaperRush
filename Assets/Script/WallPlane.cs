@@ -8,10 +8,10 @@ public class WallPlane : MonoBehaviour {
     {
         Block,
         Running,
-        YogaUp, //Up
-        Mickeal, //Right
-        Wiifit, // Left
-        SpiltFoot // Down
+        PoseUp, //Up
+        PoseRight, //Right
+        PoseLeft, // Left
+        PoseDown // Down
     }
     public m_Plane m_planeType = m_Plane.Block;
     private void Awake()
@@ -35,19 +35,19 @@ public class WallPlane : MonoBehaviour {
         {
             this.GetComponent<Renderer>().material.mainTexture = (Resources.Load("Pose_Run_Wall") as Texture);
         }
-        if (m_planeType == m_Plane.YogaUp)
+        if (m_planeType == m_Plane.PoseUp)
         {
             this.GetComponent<Renderer>().material.mainTexture = (Resources.Load("Pose_Up_Wall") as Texture);
         }
-        if (m_planeType == m_Plane.SpiltFoot)
+        if (m_planeType == m_Plane.PoseDown)
         {
             this.GetComponent<Renderer>().material.mainTexture = (Resources.Load("Pose_Low_Wall") as Texture);
         }
-        if (m_planeType == m_Plane.Mickeal)
+        if (m_planeType == m_Plane.PoseRight)
         {
             this.GetComponent<Renderer>().material.mainTexture = (Resources.Load("Pose_Right_Wall") as Texture);
         }
-        if (m_planeType == m_Plane.Wiifit)
+        if (m_planeType == m_Plane.PoseLeft)
         {
             this.GetComponent<Renderer>().material.mainTexture = (Resources.Load("Pose_Left_Wall") as Texture);
         }

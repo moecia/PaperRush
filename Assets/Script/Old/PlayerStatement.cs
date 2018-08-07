@@ -177,7 +177,7 @@ public class PlayerStatement : MonoBehaviour {
                             LoseHealth();
                         }
                     }
-                    if (theWallObject.m_planeType == WallPlane.m_Plane.YogaUp)
+                    if (theWallObject.m_planeType == WallPlane.m_Plane.PoseUp)
                     {
                         if (myPose == m_myPose.YogaUp)
                         {
@@ -188,7 +188,7 @@ public class PlayerStatement : MonoBehaviour {
                             LoseHealth();
                         }
                     }
-                    if (theWallObject.m_planeType == WallPlane.m_Plane.SpiltFoot)
+                    if (theWallObject.m_planeType == WallPlane.m_Plane.PoseDown)
                     {
                         if (myPose == m_myPose.SpiltFoot)
                         {
@@ -199,7 +199,7 @@ public class PlayerStatement : MonoBehaviour {
                             LoseHealth();
                         }
                     }
-                    if (theWallObject.m_planeType == WallPlane.m_Plane.Mickeal)
+                    if (theWallObject.m_planeType == WallPlane.m_Plane.PoseRight)
                     {
                         if (myPose == m_myPose.Mickeal)
                         {
@@ -210,7 +210,7 @@ public class PlayerStatement : MonoBehaviour {
                             LoseHealth();
                         }
                     }
-                    if (theWallObject.m_planeType == WallPlane.m_Plane.Wiifit)
+                    if (theWallObject.m_planeType == WallPlane.m_Plane.PoseLeft)
                     {
                         if (myPose == m_myPose.Wiifit)
                         {
