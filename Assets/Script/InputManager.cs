@@ -12,11 +12,13 @@ public class InputManager : MonoBehaviour {
     public ControlMethods selectedControl = ControlMethods.Keyboard;
 
     [Header("Touchscreen Inputs")]
-    private int swipeTouchCount = 1;
+    [Range(1,10)]
+    public int swipeTouchCount = 1;
     [Tooltip("Controls how the swipe gesture ends. See SwipeGestureRecognizerSwipeMode enum for more details.")]
     public SwipeGestureRecognizerEndMode swipeMode = SwipeGestureRecognizerEndMode.EndImmediately;
     private SwipeGestureRecognizer swipe;
-
+    private int twoFingerTapCount = 2;
+    private TapGestureRecognizer twoFingerTap = new TapGestureRecognizer();
     // Use this for initialization
     void Start()
     {
@@ -34,9 +36,9 @@ public class InputManager : MonoBehaviour {
         swipe.DirectionThreshold = 0;
         swipe.MinimumNumberOfTouchesToTrack = swipe.MaximumNumberOfTouchesToTrack = swipeTouchCount;
         FingersScript.Instance.AddGesture(swipe);
-        TapGestureRecognizer tap = new TapGestureRecognizer();
-        tap.StateUpdated += TapUpdated;
-        FingersScript.Instance.AddGesture(tap);
+        twoFingerTap.MinimumNumberOfTouchesToTrack = twoFingerTap.MaximumNumberOfTouchesToTrack = 2;
+        twoFingerTap.StateUpdated += TapUpdated;
+        FingersScript.Instance.AddGesture(twoFingerTap);
     }
 
     void SwipeUpdated(DigitalRubyShared.GestureRecognizer gesture)
@@ -51,7 +53,10 @@ public class InputManager : MonoBehaviour {
     void TapUpdated(DigitalRubyShared.GestureRecognizer gesture)
     {
         if (gesture.State == GestureRecognizerState.Ended)
-            Debug.Log("Tap");
+        {
+            if ((gesture as TapGestureRecognizer).TapTouches.Count == 2)
+                command.Jump();
+        }
     }
 
     // Update is called once per frame
