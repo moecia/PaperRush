@@ -10,14 +10,16 @@ public class TouchscreenInputHandler_B : MonoBehaviour {
     [Header("Touchscreen Inputs")]
     [Tooltip("Controls how the swipe gesture ends. See SwipeGestureRecognizerSwipeMode enum for more details.")]
     public SwipeGestureRecognizerEndMode swipeMode = SwipeGestureRecognizerEndMode.EndImmediately;
+    public float minimumNumberOfTouchesToTrack = .25f;
 
     // Use this for initialization
     void Start()
     {
         command = transform.GetComponent<Command>();
         SwipeGestureRecognizer swipeMovement = new SwipeGestureRecognizer();
+        swipeMovement.MinimumDistanceUnits = minimumNumberOfTouchesToTrack;
         swipeMovement.MinimumNumberOfTouchesToTrack = 1;
-        swipeMovement.DirectionThreshold = 0;
+        //swipeMovement.DirectionThreshold = 0;
         swipeMovement.EndMode = swipeMode;
         FingersScript.Instance.AddGesture(swipeMovement);
         swipeMovement.StateUpdated += SwipeUpdated;
