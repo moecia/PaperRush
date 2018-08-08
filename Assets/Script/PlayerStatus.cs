@@ -7,14 +7,12 @@ public class PlayerStatus : MonoBehaviour
     public float maxhealth = 3;
     private float currentHealth;
 
-    public float initialSpeed = 1.0f;
-    public float maxSpeed = 100.0f;
+    public float initialSpeed = 10.0f;
+    public float maxSpeed = 500.0f;
     private float currentSpeed;
 
     [SerializeField]
     private bool godMode = false;
-
-    public GameStateManager gsm;
 
     public enum PlayerPose { Up, Down, Left, Right, Running };
     private PlayerPose currentPose = PlayerPose.Running;
@@ -40,8 +38,9 @@ public class PlayerStatus : MonoBehaviour
 
     public void SetPlayerScore(int scoreChange)
     {
-        playerScore += scoreChange;
         ComboIncrement();
+        playerScore += scoreChange * 10 * (GetPlayerCombo() + 1);
+        SetCurrentSpeed(2);
         if (playerScore > scoreUpLimit)
             playerScore = scoreUpLimit;
     }
@@ -66,7 +65,7 @@ public class PlayerStatus : MonoBehaviour
         return currentSpeed;
     }
 
-    public void SetCurrentSpeed(float speedChange)
+    private void SetCurrentSpeed(float speedChange)
     {
         currentSpeed += speedChange;
         if (currentSpeed > maxSpeed)
@@ -74,6 +73,11 @@ public class PlayerStatus : MonoBehaviour
         else if (currentSpeed <= 0)
             currentSpeed = initialSpeed;
     }
+
+    private void ResetSpeed()
+    {
+        currentSpeed = initialSpeed;
+    } 
 
     public float GetCurrentHealth()
     {
@@ -83,11 +87,15 @@ public class PlayerStatus : MonoBehaviour
     public void SetCurrentHealth(float healthChange)
     {
         currentHealth += healthChange;
-        ResetCombo();
+        if (healthChange < 0)
+        {
+            ResetCombo();
+            ResetSpeed();
+        }
         if (currentHealth + healthChange > maxhealth)
             healthChange = maxhealth;
         else if (currentHealth + healthChange < 0)
-            gsm.PlayerDead();
+            healthChange = 0;
     }
 
     public PlayerPose GetCurrentPose()

@@ -16,21 +16,13 @@ public class TouchscreenInputHandler_B : MonoBehaviour {
     void Start()
     {
         command = transform.GetComponent<Command>();
-        SwipeGestureRecognizer swipeMovement = new SwipeGestureRecognizer();
-        swipeMovement.MinimumDistanceUnits = minimumNumberOfTouchesToTrack;
-        swipeMovement.MinimumNumberOfTouchesToTrack = 1;
+        SwipeGestureRecognizer swipe = new SwipeGestureRecognizer();
+        swipe.MinimumDistanceUnits = minimumNumberOfTouchesToTrack;
+        swipe.MinimumNumberOfTouchesToTrack = 1;
         //swipeMovement.DirectionThreshold = 0;
-        swipeMovement.EndMode = swipeMode;
-        FingersScript.Instance.AddGesture(swipeMovement);
-        swipeMovement.StateUpdated += SwipeUpdated;
-
-        //SwipeGestureRecognizer swipePose = new SwipeGestureRecognizer();
-        //swipePose.MinimumNumberOfTouchesToTrack = 1;
-        //swipePose.DirectionThreshold = 0;
-        //swipeMovement.EndMode = swipeMode;
-        //FingersScript.Instance.AddGesture(swipePose);
-        //swipePose.StateUpdated += SwipeUpdated;
-
+        swipe.EndMode = swipeMode;
+        FingersScript.Instance.AddGesture(swipe);
+        swipe.StateUpdated += SwipeUpdated;
     }
 
     void SwipeUpdated(DigitalRubyShared.GestureRecognizer gesture)
