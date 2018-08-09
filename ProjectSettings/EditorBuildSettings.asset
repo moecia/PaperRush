@@ -6,5 +6,5 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/PaperRush.unity
-    guid: adc7a6284fe0e834b8c835071e874ffb
+    path: Assets/Scene/PaperRush_RefactoredIO.unity
+    guid: 8676bf142f9017249aac335205581157

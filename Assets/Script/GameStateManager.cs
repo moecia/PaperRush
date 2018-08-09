@@ -15,12 +15,12 @@ public class GameStateManager : MonoBehaviour {
     void Update()
     {
         if(playerStatus != null)
-            if (playerStatus.GetCurrentHealth() <= 0)
+            if (playerStatus.currentHealth <= 0)
                 PlayerDead();
         if (uiManager != null)
         {
-            uiManager.score.text = "Score: " + playerStatus.GetPlayerScore().ToString();
-            uiManager.combo.text = "Combo: " + playerStatus.GetPlayerCombo().ToString();
+            uiManager.score.text = "Score: " + playerStatus.playerScore.ToString();
+            uiManager.combo.text = "Combo: " + playerStatus.playerCombo.ToString();
         }
     }
 
@@ -34,7 +34,8 @@ public class GameStateManager : MonoBehaviour {
 
     public void Restart()
     {
-        Application.LoadLevel(Application.loadedLevel);
+        Time.timeScale = 1;
+        Application.LoadLevel(0);
     }
 
     public void BackToMenu()

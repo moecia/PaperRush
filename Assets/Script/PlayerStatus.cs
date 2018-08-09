@@ -4,50 +4,58 @@ using UnityEngine;
 
 public class PlayerStatus : MonoBehaviour
 {
+    public AnimatorManager animatorManager;
+
     public float maxhealth = 3;
-    private float currentHealth;
+    public float currentHealth { get; private set; }
 
     public int speedUpIncrenment = 2;
     public float initialSpeed = 10.0f;
     public float maxSpeed = 500.0f;
-    private float currentSpeed;
+    public float currentSpeed { get; private set; }
+    public Transform healthSlot;
+    public GameObject healthPrefab;
     [SerializeField]
     private bool godMode = false;
 
     public enum PlayerPose { Up, Down, Left, Right, Running };
-    private PlayerPose currentPose = PlayerPose.Running;
+    public PlayerPose currentPose { get; private set; }
 
     public enum PlayerSpot { Left, Center, Right };
-    private PlayerSpot currentSpot = PlayerSpot.Center;
+    public PlayerSpot currentSpot { get; private set; }
 
-    private int playerScore = 0;
+    public int playerScore { get; private set; }
     public int scoreUpLimit = 999999;
-    private int playerCombo = 0;
+    public int playerCombo { get; private set; }
 
     private void Start()
     {
-        currentHealth = maxhealth;
-        currentSpeed = initialSpeed;
-
+        InitializePlayerStatus();
     }
 
-    public int GetPlayerScore()
+    private void InitializePlayerStatus()
     {
-        return playerScore;
+        currentPose = PlayerPose.Running;
+        currentSpot = PlayerSpot.Center;
+        playerScore = 0;
+        playerCombo = 0;
+        currentHealth = maxhealth;
+        for (int i = 0; i < currentHealth; i++)
+        {
+            GameObject temp = Instantiate(healthPrefab, healthSlot.position, Quaternion.identity);
+            temp.transform.SetParent(healthSlot);
+            healthSlot.gameObject.SetActive(false);
+        }
+        currentSpeed = initialSpeed;
     }
 
     public void SetPlayerScore(int scoreChange)
     {
         ComboIncrement();
-        playerScore += scoreChange * 10 * (GetPlayerCombo() + 1);
+        playerScore += scoreChange * 10 * (playerCombo + 1);
         SetCurrentSpeed(speedUpIncrenment);
         if (playerScore > scoreUpLimit)
             playerScore = scoreUpLimit;
-    }
-
-    public int GetPlayerCombo()
-    {
-        return playerCombo;
     }
 
     private void ComboIncrement()
@@ -58,11 +66,6 @@ public class PlayerStatus : MonoBehaviour
     private void ResetCombo()
     {
         playerCombo = 0;
-    }
-
-    public float GetCurrentSpeed()
-    {
-        return currentSpeed;
     }
 
     private void SetCurrentSpeed(float speedChange)
@@ -79,20 +82,25 @@ public class PlayerStatus : MonoBehaviour
         currentSpeed = initialSpeed;
     } 
 
-    public float GetCurrentHealth()
-    {
-        return currentHealth;
-    }
-
     public void SetCurrentHealth(float healthChange)
     {
         currentHealth += healthChange;
         if (healthChange < 0)
         {
+            // Play effects.
             if (Camera.main.gameObject.GetComponent<CameraShake>() != null)
                 StartCoroutine(Camera.main.gameObject.GetComponent<CameraShake>().Shake());
+            if (animatorManager != null)
+                animatorManager.PlayBloodScreen();
+            // Change data values.
             SetCurrentSpeed(-speedUpIncrenment);
-            ResetCombo();           
+            ResetCombo();
+            // Change health indicators looking.
+            if (healthSlot.childCount != 0)
+            {
+                Destroy(healthSlot.GetChild(healthSlot.childCount - 1).gameObject);
+                StartCoroutine(ShowCurrentHealth());
+            }
         }
         if (currentHealth + healthChange > maxhealth)
             healthChange = maxhealth;
@@ -100,19 +108,16 @@ public class PlayerStatus : MonoBehaviour
             healthChange = 0;
     }
 
-    public PlayerPose GetCurrentPose()
+    private IEnumerator ShowCurrentHealth()
     {
-        return currentPose;
+        healthSlot.gameObject.SetActive(true);
+        yield return new WaitForSeconds(3.0f);
+        healthSlot.gameObject.SetActive(false);
     }
 
     public void SetCurrentPose(PlayerPose pose)
     {
         currentPose = pose;
-    }
-
-    public PlayerSpot GetCurrentSpot()
-    {
-        return currentSpot;
     }
 
     public void SetPlayerSpot(PlayerSpot currentSpot)

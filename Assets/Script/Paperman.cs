@@ -18,8 +18,8 @@ public class Paperman : MonoBehaviour
 	// Update is called once per frame
 	void Update ()
     {
-		if(playerStatus.GetCurrentHealth() > 0)
-            mainMover.Translate(Vector3.forward * Time.deltaTime * playerStatus.GetCurrentSpeed());
+		if(playerStatus.currentHealth > 0)
+            mainMover.Translate(Vector3.forward * Time.deltaTime * playerStatus.currentSpeed);
     }
 
     private void OnTriggerEnter(Collider other)
@@ -35,31 +35,31 @@ public class Paperman : MonoBehaviour
                         playerStatus.SetCurrentHealth(healthDamage);
                         break;
                     case WallPlane.m_Plane.Running:
-                        if (playerStatus.GetCurrentPose() == PlayerStatus.PlayerPose.Running)
+                        if (playerStatus.currentPose == PlayerStatus.PlayerPose.Running)
                             playerStatus.SetPlayerScore(scoreRate);
                         else
                             playerStatus.SetCurrentHealth(healthDamage);
                         break;
                     case WallPlane.m_Plane.PoseUp:
-                        if (playerStatus.GetCurrentPose() == PlayerStatus.PlayerPose.Up)
+                        if (playerStatus.currentPose == PlayerStatus.PlayerPose.Up)
                             playerStatus.SetPlayerScore(scoreRate);
                         else
                             playerStatus.SetCurrentHealth(healthDamage);
                         break;
                     case WallPlane.m_Plane.PoseDown:
-                        if (playerStatus.GetCurrentPose() == PlayerStatus.PlayerPose.Down)
+                        if (playerStatus.currentPose == PlayerStatus.PlayerPose.Down)
                             playerStatus.SetPlayerScore(scoreRate);
                         else
                             playerStatus.SetCurrentHealth(healthDamage);
                         break;
                     case WallPlane.m_Plane.PoseLeft:
-                        if (playerStatus.GetCurrentPose() == PlayerStatus.PlayerPose.Left)
+                        if (playerStatus.currentPose == PlayerStatus.PlayerPose.Left)
                             playerStatus.SetPlayerScore(scoreRate);
                         else
                             playerStatus.SetCurrentHealth(healthDamage);
                         break;
                     case WallPlane.m_Plane.PoseRight:
-                        if (playerStatus.GetCurrentPose() == PlayerStatus.PlayerPose.Right)
+                        if (playerStatus.currentPose == PlayerStatus.PlayerPose.Right)
                             playerStatus.SetPlayerScore(scoreRate);
                         else
                             playerStatus.SetCurrentHealth(healthDamage);

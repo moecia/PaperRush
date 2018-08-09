@@ -7,7 +7,6 @@ public class UIManager : MonoBehaviour {
     [Header("CharacterStat")]
     public Text score;
     public Text combo;
-
     [Header("Game State")]
     public GameObject gameOverPanel;
     public Text gameOverText;
