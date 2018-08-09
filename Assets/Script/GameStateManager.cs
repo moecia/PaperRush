@@ -14,11 +14,14 @@ public class GameStateManager : MonoBehaviour {
 
     void Update()
     {
-        if (playerStatus.GetCurrentHealth() <= 0)
-            PlayerDead();
-        uiManager.health.text = "Health: "  + playerStatus.GetCurrentHealth().ToString();
-        uiManager.score.text = "Score: " + playerStatus.GetPlayerScore().ToString();
-        uiManager.combo.text = "Combo: " + playerStatus.GetPlayerCombo().ToString();
+        if(playerStatus != null)
+            if (playerStatus.GetCurrentHealth() <= 0)
+                PlayerDead();
+        if (uiManager != null)
+        {
+            uiManager.score.text = "Score: " + playerStatus.GetPlayerScore().ToString();
+            uiManager.combo.text = "Combo: " + playerStatus.GetPlayerCombo().ToString();
+        }
     }
 
 
@@ -32,5 +35,20 @@ public class GameStateManager : MonoBehaviour {
     public void Restart()
     {
         Application.LoadLevel(Application.loadedLevel);
+    }
+
+    public void BackToMenu()
+    {
+        print("Under construction...");
+    }
+
+    public void PauseGame()
+    {
+        Time.timeScale = 0;
+    }
+
+    public void ResumeGame()
+    {
+        Time.timeScale = 1;
     }
 }

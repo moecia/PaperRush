@@ -7,10 +7,10 @@ public class PlayerStatus : MonoBehaviour
     public float maxhealth = 3;
     private float currentHealth;
 
+    public int speedUpIncrenment = 2;
     public float initialSpeed = 10.0f;
     public float maxSpeed = 500.0f;
     private float currentSpeed;
-
     [SerializeField]
     private bool godMode = false;
 
@@ -40,7 +40,7 @@ public class PlayerStatus : MonoBehaviour
     {
         ComboIncrement();
         playerScore += scoreChange * 10 * (GetPlayerCombo() + 1);
-        SetCurrentSpeed(2);
+        SetCurrentSpeed(speedUpIncrenment);
         if (playerScore > scoreUpLimit)
             playerScore = scoreUpLimit;
     }
@@ -89,8 +89,10 @@ public class PlayerStatus : MonoBehaviour
         currentHealth += healthChange;
         if (healthChange < 0)
         {
-            ResetCombo();
-            ResetSpeed();
+            if (Camera.main.gameObject.GetComponent<CameraShake>() != null)
+                StartCoroutine(Camera.main.gameObject.GetComponent<CameraShake>().Shake());
+            SetCurrentSpeed(-speedUpIncrenment);
+            ResetCombo();           
         }
         if (currentHealth + healthChange > maxhealth)
             healthChange = maxhealth;
