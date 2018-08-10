@@ -2,8 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEditor;
 
-public class GameStateManager : MonoBehaviour
+public class GameManager : MonoBehaviour
 {
     public void Restart()
     {
@@ -24,5 +25,22 @@ public class GameStateManager : MonoBehaviour
     public void ResumeGame()
     {
         Time.timeScale = 1;
+    }
+}
+
+[CustomEditor(typeof(GameManager))]
+public class GSM : Editor
+{
+    public override void OnInspectorGUI()
+    {
+        DrawDefaultInspector();
+
+        if (GUILayout.Button("Restart"))
+        {
+            Application.LoadLevel(0);
+        }
+
+        if (GUILayout.Button("Clear Data"))
+            GameData.ClearData();
     }
 }

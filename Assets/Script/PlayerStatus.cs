@@ -12,6 +12,7 @@ public class PlayerStatus : MonoBehaviour
     public int speedUpIncrenment = 2;
     public float initialSpeed = 10.0f;
     public float maxSpeed = 500.0f;
+
     public float currentSpeed { get; private set; }
     public Transform healthSlot;
     public GameObject healthPrefab;

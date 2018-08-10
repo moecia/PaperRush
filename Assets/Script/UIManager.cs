@@ -30,6 +30,11 @@ public class UIManager : MonoBehaviour {
     private void ShowDeathMenu()
     {
         gameOverPanel.SetActive(true);
+        bool isNewRecord = GameData.SetHighestScore(playerStatus.playerScore);
+        if (isNewRecord)
+            gameOverText.text = "You score is: " + playerStatus.playerScore + "\n" + "The highest score is: " + GameData.GetHighestScore().ToString() + "\n" + "You broke the record, congrats!";
+        else
+            gameOverText.text = "You score is: " + playerStatus.playerScore + "\n" + "The highest score is: " + GameData.GetHighestScore().ToString() + "\n" + "You didn't break the record, good luck next time!";
         enabled = false;
     }
 
