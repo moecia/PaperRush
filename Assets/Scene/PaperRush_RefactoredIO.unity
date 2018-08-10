@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44554693, g: 0.49522585, b: 0.5741258, a: 1}
+  m_IndirectSpecularColor: {r: 0.4455465, g: 0.49522513, b: 0.5741246, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -2885,7 +2885,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 165, y: 332.03308}
+  m_AnchoredPosition: {x: 284.9928, y: 332.03308}
   m_SizeDelta: {x: 260, y: 200.09998}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &249283745
@@ -3748,7 +3748,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &299073377
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3764,8 +3764,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 883, y: 462}
-  m_SizeDelta: {x: 466.9, y: 140}
+  m_AnchoredPosition: {x: 773.3, y: 431.9}
+  m_SizeDelta: {x: 619.9, y: 200.3}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &299073378
 MonoBehaviour:
@@ -3788,7 +3788,7 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
     m_Font: {fileID: 12800000, guid: 54fee3226a4f9af4daef7826d3e541da, type: 3}
-    m_FontSize: 108
+    m_FontSize: 128
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 0
@@ -3818,7 +3818,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_EffectColor: {r: 0, g: 0, b: 0, a: 0.5}
-  m_EffectDistance: {x: 5, y: -5}
+  m_EffectDistance: {x: 10, y: -10}
   m_UseGraphicAlpha: 1
 --- !u!1001 &302269362
 Prefab:
@@ -3981,7 +3981,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -2336, y: -100}
+  m_AnchoredPosition: {x: -2289, y: -150}
   m_SizeDelta: {x: 200, y: 200}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &315425201
@@ -4970,7 +4970,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   actionManager: {fileID: 1808197241}
-  poseDuration: 0.25
+  poseDuration: 0.35
 --- !u!4 &485438306 stripped
 Transform:
   m_PrefabParentObject: {fileID: 406214, guid: 4c75fb951cacb284d97ceb978701c84c, type: 2}
@@ -13277,7 +13277,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1315740493
 RectTransform:
   m_ObjectHideFlags: 0
@@ -13293,8 +13293,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 2150.85, y: -186.45166}
-  m_SizeDelta: {x: 570.3, y: 199.7}
+  m_AnchoredPosition: {x: 2057.4, y: -253.6}
+  m_SizeDelta: {x: 757.1, y: 285.6}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1315740494
 MonoBehaviour:
@@ -18377,7 +18377,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 441, y: 332.03308}
+  m_AnchoredPosition: {x: 560.9928, y: 332.03308}
   m_SizeDelta: {x: 260, y: 200}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1916492384
@@ -19388,7 +19388,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 492.5}
-  m_SizeDelta: {x: 640.2, y: 140}
+  m_SizeDelta: {x: 450, y: 140}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2017801810
 MonoBehaviour:
@@ -19436,7 +19436,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Score:'
+  m_Text: 'Score: '
 --- !u!222 &2017801812
 CanvasRenderer:
   m_ObjectHideFlags: 0
