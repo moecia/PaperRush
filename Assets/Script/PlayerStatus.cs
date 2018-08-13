@@ -5,6 +5,8 @@ using UnityEngine;
 public class PlayerStatus : MonoBehaviour
 {
     public AnimatorManager animatorManager;
+    public AudioManager audioManager;
+    public AudioSource playerAudio;
 
     public float maxhealth = 3;
     public float currentHealth { get; private set; }
@@ -53,6 +55,7 @@ public class PlayerStatus : MonoBehaviour
     public void SetPlayerScore(int scoreChange)
     {
         ComboIncrement();
+        playerAudio.PlayOneShot(audioManager.getScore);
         playerScore += scoreChange * 10 * (playerCombo + 1);
         SetCurrentSpeed(speedUpIncrenment);
         if (playerScore > scoreUpLimit)
@@ -71,6 +74,7 @@ public class PlayerStatus : MonoBehaviour
 
     private void SetCurrentSpeed(float speedChange)
     {
+        animatorManager.playerAnimator.speed = currentSpeed/10;
         currentSpeed += speedChange;
         if (currentSpeed > maxSpeed)
             currentSpeed = maxSpeed;
@@ -88,6 +92,8 @@ public class PlayerStatus : MonoBehaviour
         currentHealth += healthChange;
         if (healthChange < 0)
         {
+            // Play sound
+            playerAudio.PlayOneShot(audioManager.getHit);
             // Play effects.
             if (Camera.main.gameObject.GetComponent<CameraShake>() != null)
                 StartCoroutine(Camera.main.gameObject.GetComponent<CameraShake>().Shake());

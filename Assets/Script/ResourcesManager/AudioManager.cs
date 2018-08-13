@@ -11,6 +11,7 @@ public class AudioManager : MonoBehaviour
     public AudioClip poseRight;
     public AudioClip move;
     public AudioClip jump;
+    public AudioClip getScore;
     public AudioClip getHit;
     public AudioClip dead;
 
@@ -21,10 +22,10 @@ public class AudioManager : MonoBehaviour
         poseUp = Resources.Load<AudioClip>("Ya");
         poseDown = Resources.Load<AudioClip>("WeYa");
         poseLeft = Resources.Load<AudioClip>("Hah");
-        poseRight = Resources.Load<AudioClip>("Woo");
-        
+        poseRight = Resources.Load<AudioClip>("Woo");        
         jump = Resources.Load<AudioClip>("JumpSound");
-        getHit = Resources.Load<AudioClip>("Hit");
+        getScore = Resources.Load<AudioClip>("Yes");
+        getHit = Resources.Load<AudioClip>("GetHit");
         dead = Resources.Load<AudioClip>("GameOver");
     }
 

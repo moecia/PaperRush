@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.4455465, g: 0.49522513, b: 0.5741246, a: 1}
+  m_IndirectSpecularColor: {r: 0.44554693, g: 0.49522585, b: 0.5741258, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -745,7 +745,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: 0.2
+  m_Volume: 0.5
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -1650,7 +1650,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 410720, guid: 12bb450a972586d41aee175c5e7a73b2, type: 2}
       propertyPath: m_LocalRotation.y
-      value: -0.2396909
+      value: -0.23969091
       objectReference: {fileID: 0}
     - target: {fileID: 410720, guid: 12bb450a972586d41aee175c5e7a73b2, type: 2}
       propertyPath: m_LocalRotation.z
@@ -1658,7 +1658,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 410720, guid: 12bb450a972586d41aee175c5e7a73b2, type: 2}
       propertyPath: m_LocalRotation.w
-      value: 0.9708492
+      value: 0.9708493
       objectReference: {fileID: 0}
     - target: {fileID: 410720, guid: 12bb450a972586d41aee175c5e7a73b2, type: 2}
       propertyPath: m_RootOrder
@@ -3748,7 +3748,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &299073377
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3762,10 +3762,10 @@ RectTransform:
   m_Father: {fileID: 471205960}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 773.3, y: 431.9}
-  m_SizeDelta: {x: 619.9, y: 200.3}
+  m_AnchorMin: {x: 1, y: 1}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: -378.60013, y: -135.66522}
+  m_SizeDelta: {x: 619.9, y: 200.29999}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &299073378
 MonoBehaviour:
@@ -4593,6 +4593,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animatorManager: {fileID: 1119173299}
+  audioManager: {fileID: 944270404}
+  playerAudio: {fileID: 42581488}
   maxhealth: 3
   speedUpIncrenment: 2
   initialSpeed: 10
@@ -7827,7 +7829,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 87754f346fba0e74b806b1a6264be658, type: 3}
+  m_audioClip: {fileID: 8300000, guid: e25ce4df242dd9547a8d396adaa7f507, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 0.5
   m_Pitch: 1
@@ -8909,8 +8911,9 @@ MonoBehaviour:
   poseDown: {fileID: 0}
   poseLeft: {fileID: 0}
   poseRight: {fileID: 0}
-  move: {fileID: 0}
+  move: {fileID: 8300000, guid: e9714160ce34f2b4ab63ff8c27bd68e1, type: 3}
   jump: {fileID: 0}
+  getScore: {fileID: 0}
   getHit: {fileID: 0}
   dead: {fileID: 0}
   empty: {fileID: 0}
@@ -13277,7 +13280,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1315740493
 RectTransform:
   m_ObjectHideFlags: 0
@@ -13291,10 +13294,10 @@ RectTransform:
   m_Father: {fileID: 471205960}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 2057.4, y: -253.6}
-  m_SizeDelta: {x: 757.1, y: 285.6}
+  m_AnchorMin: {x: 1, y: 1}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: -378.6001, y: -253.6}
+  m_SizeDelta: {x: 757.1001, y: 285.6}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1315740494
 MonoBehaviour:
@@ -17904,7 +17907,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 0.2, y: 0.2}
+  m_Size: {x: 5.12, y: 5.12}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
