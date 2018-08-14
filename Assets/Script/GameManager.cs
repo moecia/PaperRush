@@ -6,6 +6,17 @@ using UnityEditor;
 
 public class GameManager : MonoBehaviour
 {
+    public bool gameStart = false;
+    public GameObject inGamePanel;
+    public GameObject startGamePanel;
+
+    public void StartGame()
+    {
+        gameStart = true;
+        inGamePanel.SetActive(true);
+        startGamePanel.SetActive(false);
+    }
+
     public void Restart()
     {
         Time.timeScale = 1;
@@ -14,7 +25,8 @@ public class GameManager : MonoBehaviour
 
     public void BackToMenu()
     {
-        print("Under construction...");
+        Time.timeScale = 1;
+        Application.LoadLevel(1);
     }
 
     public void PauseGame()
@@ -37,7 +49,7 @@ public class GSM : Editor
 
         if (GUILayout.Button("Restart"))
         {
-            Application.LoadLevel(0);
+            Application.LoadLevel(1);
         }
 
         if (GUILayout.Button("Clear Data"))

@@ -11,7 +11,8 @@ public class UIManager : MonoBehaviour {
     public Image comboEndHighlighter;
     [Header("Game State")]
     public GameObject gameOverPanel;
-    public Text gameOverText;
+    public Text finalScore;
+    public GameObject newRecordNote;
 
     private int comboCounter;
 
@@ -32,9 +33,12 @@ public class UIManager : MonoBehaviour {
         gameOverPanel.SetActive(true);
         bool isNewRecord = GameData.SetHighestScore(playerStatus.playerScore);
         if (isNewRecord)
-            gameOverText.text = "You score is: " + playerStatus.playerScore + "\n" + "The highest score is: " + GameData.GetHighestScore().ToString() + "\n" + "You broke the record, congrats!";
+        {
+            finalScore.text = playerStatus.playerScore.ToString();
+            newRecordNote.SetActive(true);
+        }
         else
-            gameOverText.text = "You score is: " + playerStatus.playerScore + "\n" + "The highest score is: " + GameData.GetHighestScore().ToString() + "\n" + "You didn't break the record, good luck next time!";
+            finalScore.text = playerStatus.playerScore.ToString();
         enabled = false;
     }
 
