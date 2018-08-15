@@ -14,6 +14,12 @@ public class UIManager : MonoBehaviour {
     public Text finalScore;
     public GameObject newRecordNote;
 
+    [Header("Tutorial")]
+    public Animator tutorialPanel_C;
+
+    [Header("In-Game buttons")]
+    public GameObject pauseButton;
+
     private int comboCounter;
 
     private void Update()
@@ -28,9 +34,16 @@ public class UIManager : MonoBehaviour {
         }
     }
 
+    public void ShowTutorial()
+    {
+        if (!PlayerPrefs.HasKey("highestScore"))
+            tutorialPanel_C.GetComponent<Animator>().Play("TutorialInput_C");
+    }
+
     private void ShowDeathMenu()
     {
         gameOverPanel.SetActive(true);
+        pauseButton.SetActive(false);
         bool isNewRecord = GameData.SetHighestScore(playerStatus.playerScore);
         if (isNewRecord)
         {

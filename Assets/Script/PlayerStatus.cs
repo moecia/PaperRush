@@ -78,7 +78,7 @@ public class PlayerStatus : MonoBehaviour
         currentSpeed += speedChange;
         if (currentSpeed > maxSpeed)
             currentSpeed = maxSpeed;
-        else if (currentSpeed <= 0)
+        else if (currentSpeed <= initialSpeed)
             currentSpeed = initialSpeed;
     }
 
@@ -100,7 +100,7 @@ public class PlayerStatus : MonoBehaviour
             if (animatorManager != null)
                 animatorManager.PlayBloodScreen();
             // Change data values.
-            SetCurrentSpeed(-speedUpIncrenment);
+            SetCurrentSpeed(-currentSpeed/2);
             ResetCombo();
             // Change health indicators looking.
             if (healthSlot.childCount != 0)
