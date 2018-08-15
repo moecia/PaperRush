@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEditor;
+//using UnityEditor;
 
 public class GameManager : MonoBehaviour
 {
@@ -20,13 +20,13 @@ public class GameManager : MonoBehaviour
     public void Restart()
     {
         Time.timeScale = 1;
-        Application.LoadLevel(0);
+		Application.LoadLevel(1);
     }
 
     public void BackToMenu()
     {
         Time.timeScale = 1;
-        Application.LoadLevel(1);
+        Application.LoadLevel(0);
     }
 
     public void PauseGame()
@@ -40,19 +40,19 @@ public class GameManager : MonoBehaviour
     }
 }
 
-[CustomEditor(typeof(GameManager))]
-public class GSM : Editor
-{
-    public override void OnInspectorGUI()
-    {
-        DrawDefaultInspector();
-
-        if (GUILayout.Button("Restart"))
-        {
-            Application.LoadLevel(1);
-        }
-
-        if (GUILayout.Button("Clear Data"))
-            GameData.ClearData();
-    }
-}
+//[CustomEditor(typeof(GameManager))]
+//public class GSM : Editor
+//{
+//    public override void OnInspectorGUI()
+//    {
+//        DrawDefaultInspector();
+//
+//        if (GUILayout.Button("Restart"))
+//        {
+//            Application.LoadLevel(1);
+//        }
+//
+//        if (GUILayout.Button("Clear Data"))
+//            GameData.ClearData();
+//    }
+//}
