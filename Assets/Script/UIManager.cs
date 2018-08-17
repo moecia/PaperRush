@@ -4,16 +4,18 @@ using UnityEngine;
 using UnityEngine.UI;
 public class UIManager : MonoBehaviour {
 
+    public PlayerStatus playerStatus;
+    public InputManager inputManager;
+
     public enum Localization { EN, SCN, TCN }
     public Localization selectedLocalization = Localization.EN;
-
-    public PlayerStatus playerStatus;
     [Header("StartGame UI")]
+
     public Text touchScreenToStart;
     public Text toggleTutorial;
     [Header("Tutorial UI")]
-    public Text Input_C_tutorial_0;
-    public Text Input_C_tutorial_1;
+    public Text inputTutorial_0;
+    public Text inputTutorial_1;
     [Header("CharacterStat")]
     public Text score;
     public Text combo;
@@ -48,10 +50,17 @@ public class UIManager : MonoBehaviour {
         {
             touchScreenToStart.text = "Touch Screen To Start";
 
-            Input_C_tutorial_0.text = "Swipe left: move left Swipe" + "\n" + "Right: move right" + "\n" + "Swipe Up: Jump";
-            Input_C_tutorial_1.text = "Tap to Making Pose";
-
-            if (GameData.GetTutorialVisibility())
+            if (inputManager.selectedControl == InputManager.ControlMethods.TouchScreen_C)
+            {
+                inputTutorial_0.text = "Swipe left: move left Swipe" + "\n" + "Right: move right" + "\n" + "Swipe Up: Jump";
+                inputTutorial_1.text = "Tap to Making Pose";
+            }
+            else if (inputManager.selectedControl == InputManager.ControlMethods.TouchPad)
+            {
+                inputTutorial_0.text = "Tap to Move or Jump";
+                inputTutorial_1.text = "Tap to Making Pose";
+            }
+                if (GameData.GetTutorialVisibility())
                 toggleTutorial.text = "Hide Tutorial";
             else
                 toggleTutorial.text = "Show Tutorial";
@@ -60,10 +69,16 @@ public class UIManager : MonoBehaviour {
         else if (selectedLocalization == Localization.SCN)
         {
             touchScreenToStart.text = "点击屏幕开始游戏";
-
-            Input_C_tutorial_0.text = "左划：向左移 右划：向右移" + "\n" + "上划：跳跃";
-            Input_C_tutorial_1.text = "点击按钮摆Pose";
-
+            if (inputManager.selectedControl == InputManager.ControlMethods.TouchScreen_C)
+            {
+                inputTutorial_0.text = "左划：向左移 右划：向右移" + "\n" + "上划：跳跃";
+                inputTutorial_1.text = "点击按钮摆Pose";
+            }
+            else if (inputManager.selectedControl == InputManager.ControlMethods.TouchPad)
+            {
+                inputTutorial_0.text = "点击按钮移动或跳跃";
+                inputTutorial_1.text = "点击按钮摆Pose";
+            }
             if (GameData.GetTutorialVisibility())
                 toggleTutorial.text = "隐藏教程";
             else
@@ -73,10 +88,16 @@ public class UIManager : MonoBehaviour {
         else if(selectedLocalization == Localization.TCN)
         {
             touchScreenToStart.text = "點擊屏幕開始遊戲";
-
-            Input_C_tutorial_0.text = "左劃：向左移 右劃：向右移" + "\n" + "上劃：跳躍";
-            Input_C_tutorial_1.text = "點擊按鈕擺Pose";
-
+            if (inputManager.selectedControl == InputManager.ControlMethods.TouchScreen_C)
+            {
+                inputTutorial_0.text = "左劃：向左移 右劃：向右移" + "\n" + "上劃：跳躍";
+                inputTutorial_1.text = "點擊按鈕擺Pose";
+            }
+            else if (inputManager.selectedControl == InputManager.ControlMethods.TouchPad)
+            {
+                inputTutorial_0.text = "點擊屏幕移動或跳躍";
+                inputTutorial_1.text = "點擊按鈕擺Pose";
+            }
             if (GameData.GetTutorialVisibility())
                 toggleTutorial.text = "隱藏教程";
             else
@@ -112,7 +133,7 @@ public class UIManager : MonoBehaviour {
     public void ShowTutorial()
     {
         if (GameData.GetTutorialVisibility())
-            tutorialPanel_C.GetComponent<Animator>().Play("TutorialInput_C");
+            tutorialPanel_C.GetComponent<Animator>().Play("TutorialInput");
     }
 
     private void ShowDeathMenu()
