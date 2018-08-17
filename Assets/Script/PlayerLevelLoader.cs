@@ -4,23 +4,28 @@ using UnityEngine;
 
 public class PlayerLevelLoader : MonoBehaviour {
 
-    [SerializeField]private Object n_nextLevel = null;
-    [SerializeField]private GameObject n_lastLevel = null;
-
+    [SerializeField]
+    private Object nextGrid = null;
+    [SerializeField]
+    public GameObject currentGrid;
+    [SerializeField]
+    private Queue<GameObject> levelQueue = new Queue<GameObject>();
+    public int levelQueueCapacity = 3;
+    
     public GameManager gameManager;
+    public PlayerStatus playerStatus;
 
     public void OnTriggerEnter(Collider other)
     {
         if (other.tag == "LevelGrp")
         {
-            if (n_lastLevel == null)
-                n_lastLevel = other.transform.parent.gameObject; 
-            else
-            {
-                Destroy(n_lastLevel);
-                n_lastLevel = other.transform.parent.gameObject;
-            }
-            if (gameManager.gameStart)
+            currentGrid = other.transform.parent.gameObject;
+            levelQueue.Enqueue(currentGrid);
+
+            if (levelQueue.Count > levelQueueCapacity)
+                Destroy(levelQueue.Dequeue());
+
+            if (gameManager.currentState == GameManager.GameState.InProgress)
             {
                 if (Resources.LoadAll("LevelGrp", typeof(LevelGrpCode)) != null)
                 {
@@ -29,7 +34,7 @@ public class PlayerLevelLoader : MonoBehaviour {
                     LoadNextLevelGrp(myNextLevel);
                 }
             }
-            else
+            else if (gameManager.currentState == GameManager.GameState.StartMenu)
             {
                 if (Resources.LoadAll("StartMenuLevelGrp", typeof(LevelGrpCode)) != null)
                 {
@@ -39,12 +44,24 @@ public class PlayerLevelLoader : MonoBehaviour {
                 }
             }
         }
+    
+    }
+
+    public void OnTriggerStay(Collider other)
+    {
+        if (other.tag == "SlowdownArea")
+        {
+            if (gameManager.currentState == GameManager.GameState.InProgress)
+            {
+                playerStatus.SlowdownToStartGame();
+            }
+        }
     }
 
     private void LoadNextLevelGrp(Object[] myNextLevel)
     {
-        n_nextLevel = myNextLevel[Random.Range(0, myNextLevel.Length)];
-        Transform nextSpawnSpot = n_lastLevel.GetComponent<LevelGrpCode>().nextSpawnPoint;
-        Instantiate(n_nextLevel, nextSpawnSpot.position, Quaternion.identity);
+        nextGrid = myNextLevel[Random.Range(0, myNextLevel.Length)];
+        Transform nextSpawnSpot = currentGrid.GetComponent<LevelGrpCode>().nextSpawnPoint;
+        Instantiate(nextGrid, nextSpawnSpot.position, Quaternion.identity);
     }
 }

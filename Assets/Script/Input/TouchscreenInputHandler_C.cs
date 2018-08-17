@@ -35,15 +35,12 @@ public class TouchscreenInputHandler_C : MonoBehaviour
         SwipeGestureRecognizer swipe = gesture as SwipeGestureRecognizer;
         if (swipe.State == GestureRecognizerState.Ended)
         {
-            if (swipe.FocusX < Screen.width / 2)
-            {
-                if (swipe.EndDirection == SwipeGestureRecognizerDirection.Up)
-                    command.Jump();
-                else if (swipe.EndDirection == SwipeGestureRecognizerDirection.Left)
-                    command.MoveLeft();
-                else if (swipe.EndDirection == SwipeGestureRecognizerDirection.Right)
-                    command.MoveRight();
-            }
+            if (swipe.EndDirection == SwipeGestureRecognizerDirection.Up)
+                command.Jump();
+            else if (swipe.EndDirection == SwipeGestureRecognizerDirection.Left)
+                command.MoveLeft();
+            else if (swipe.EndDirection == SwipeGestureRecognizerDirection.Right)
+                command.MoveRight();
         }
     }
 }

@@ -1,58 +1,40 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
-//using UnityEditor;
+using UnityEditor;
 
-public class GameManager : MonoBehaviour
-{
-    public bool gameStart = false;
-    public GameObject inGamePanel;
-    public GameObject startGamePanel;
+public class GameManager : MonoBehaviour {
 
-    public void StartGame()
+    public enum GameState { Initialization, StartMenu, InProgress, GameOver }
+    public GameState currentState = GameState.Initialization;
+
+    // Use this for initialization
+    void Start ()
     {
-        gameStart = true;
-        inGamePanel.SetActive(true);
-        startGamePanel.SetActive(false);
-    }
 
-    public void Restart()
-    {
-        Time.timeScale = 1;
-		Application.LoadLevel(1);
-    }
+	}
 
-    public void BackToMenu()
-    {
-        Time.timeScale = 1;
-        Application.LoadLevel(0);
-    }
 
-    public void PauseGame()
+	// Update is called once per frame
+	void Update ()
     {
-        Time.timeScale = 0;
-    }
-
-    public void ResumeGame()
-    {
-        Time.timeScale = 1;
-    }
+		
+	}
 }
 
-//[CustomEditor(typeof(GameManager))]
-//public class GSM : Editor
-//{
-//    public override void OnInspectorGUI()
-//    {
-//        DrawDefaultInspector();
-//
-//        if (GUILayout.Button("Restart"))
-//        {
-//            Application.LoadLevel(1);
-//        }
-//
-//        if (GUILayout.Button("Clear Data"))
-//            GameData.ClearData();
-//    }
-//}
+[CustomEditor(typeof(ButtonCalls))]
+public class GM : Editor
+{
+    public override void OnInspectorGUI()
+    {
+        DrawDefaultInspector();
+
+        if (GUILayout.Button("Restart"))
+        {
+            Application.LoadLevel(1);
+        }
+
+        if (GUILayout.Button("Clear Data"))
+            GameData.ClearData();
+    }
+}

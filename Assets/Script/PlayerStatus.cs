@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PlayerStatus : MonoBehaviour
 {
+    public GameManager gameManager;
     public AnimatorManager animatorManager;
     public AudioManager audioManager;
     public AudioSource playerAudio;
@@ -12,14 +13,15 @@ public class PlayerStatus : MonoBehaviour
     public float currentHealth { get; private set; }
 
     public int speedUpIncrenment = 2;
+    public float startMenuSpeed = 50.0f;
     public float initialSpeed = 10.0f;
     public float maxSpeed = 500.0f;
 
     public float currentSpeed { get; private set; }
     public Transform healthSlot;
     public GameObject healthPrefab;
-    [SerializeField]
-    private bool godMode = false;
+
+    public bool godMode = false;
 
     public enum PlayerPose { Up, Down, Left, Right, Running };
     public PlayerPose currentPose { get; private set; }
@@ -36,6 +38,11 @@ public class PlayerStatus : MonoBehaviour
         InitializePlayerStatus();
     }
 
+    private void Update()
+    {
+        animatorManager.playerAnimator.speed = currentSpeed / 10;
+    }
+
     private void InitializePlayerStatus()
     {
         currentPose = PlayerPose.Running;
@@ -49,7 +56,10 @@ public class PlayerStatus : MonoBehaviour
             temp.transform.SetParent(healthSlot);
             healthSlot.gameObject.SetActive(false);
         }
-        currentSpeed = initialSpeed;
+        if (gameManager.currentState == GameManager.GameState.StartMenu)
+            currentSpeed = startMenuSpeed;
+        else if (gameManager.currentState == GameManager.GameState.InProgress)
+            currentSpeed = initialSpeed;
     }
 
     public void SetPlayerScore(int scoreChange)
@@ -74,7 +84,6 @@ public class PlayerStatus : MonoBehaviour
 
     private void SetCurrentSpeed(float speedChange)
     {
-        animatorManager.playerAnimator.speed = currentSpeed/10;
         currentSpeed += speedChange;
         if (currentSpeed > maxSpeed)
             currentSpeed = maxSpeed;
@@ -130,5 +139,13 @@ public class PlayerStatus : MonoBehaviour
     public void SetPlayerSpot(PlayerSpot currentSpot)
     {
         this.currentSpot = currentSpot;
+    }
+
+    public void SlowdownToStartGame()
+    {
+        if (currentSpeed > initialSpeed)
+            currentSpeed -= 10 * Time.deltaTime;
+        else
+            currentSpeed = initialSpeed;
     }
 }
