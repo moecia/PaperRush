@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEditor;
+//using UnityEditor;
 
 public class GameManager : MonoBehaviour {
 
@@ -22,19 +22,19 @@ public class GameManager : MonoBehaviour {
 	}
 }
 
-[CustomEditor(typeof(ButtonCalls))]
-public class GM : Editor
-{
-    public override void OnInspectorGUI()
-    {
-        DrawDefaultInspector();
+//[CustomEditor(typeof(ButtonCalls))]
+//public class GM : Editor
+//{
+//    public override void OnInspectorGUI()
+//    {
+//        DrawDefaultInspector();
 
-        if (GUILayout.Button("Restart"))
-        {
-            Application.LoadLevel(1);
-        }
+//        if (GUILayout.Button("Restart"))
+//        {
+//            Application.LoadLevel(1);
+//        }
 
-        if (GUILayout.Button("Clear Data"))
-            GameData.ClearData();
-    }
-}
+//        if (GUILayout.Button("Clear Data"))
+//            GameData.ClearData();
+//    }
+//}
