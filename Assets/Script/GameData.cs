@@ -63,6 +63,16 @@ public static class GameData
         return PlayerPrefs.GetInt("Localization");
     }
 
+    public static void SetSelectedInput(int selectedInput)
+    {
+        PlayerPrefs.SetInt("SelectedInput", selectedInput);
+    }
+
+    public static int GetSelectedInput()
+    {
+        return PlayerPrefs.GetInt("SelectedInput");
+    }
+
     public static void ClearData()
     {
         PlayerPrefs.DeleteAll();

@@ -12,10 +12,22 @@ public class InputManager : MonoBehaviour
     public GameObject touchPad_L;
     public GameObject touchPad_R;
     public ControlMethods selectedControl = ControlMethods.Keyboard;
-
     // Use this for initialization
     void Start()
-    { 
+    {
+        if (PlayerPrefs.HasKey("SelectedInput"))
+            selectedControl = (ControlMethods)GameData.GetSelectedInput();
+        SetControl();
+    }
+
+    private void SetControl()
+    {
+        touchPad_L.SetActive(false);
+        touchPad_R.SetActive(false);
+        foreach (var comp in gameObject.GetComponents<Component>())
+            if (!(comp is Transform) && !(comp is InputManager) && !(comp is Command))
+                Destroy(comp);
+
         switch (selectedControl)
         {
             case ControlMethods.TouchScreen_A:
@@ -38,5 +50,31 @@ public class InputManager : MonoBehaviour
         }
     }
 
+    public void SwapInputToTouchScreen_A()
+    {
+        selectedControl = ControlMethods.TouchScreen_A;
+        SetControl();
+        GameData.SetSelectedInput((int)selectedControl);
+    }
 
+    public void SwapInputToTouchScreen_B()
+    {
+        selectedControl = ControlMethods.TouchScreen_B;
+        SetControl();
+        GameData.SetSelectedInput((int)selectedControl);
+    }
+
+    public void SwapInputToTouchScreen_C()
+    {
+        selectedControl = ControlMethods.TouchScreen_C;
+        SetControl();
+        GameData.SetSelectedInput((int)selectedControl);
+    }
+
+    public void SwapInputToTouchScreen_Touchpad()
+    {
+        selectedControl = ControlMethods.TouchPad;
+        SetControl();
+        GameData.SetSelectedInput((int)selectedControl);
+    }
 }

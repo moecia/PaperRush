@@ -5,56 +5,89 @@ using UnityEngine;
 public class Command : MonoBehaviour
 {
     public ActionManager actionManager;
+
     public float poseDuration = .25f;
+    private bool canBeControlled = true;
 
     public void MoveLeft()
     {
-        actionManager.moveLeft.MoveAction();
-        print("Move left.");
+        if (canBeControlled)
+        {
+            actionManager.moveLeft.MoveAction();
+            print("Move left.");
+        }     
     }
 
     public void MoveRight()
     {
-        actionManager.moveRight.MoveAction();
-        print("Move right.");
+        if (canBeControlled)
+        {
+            actionManager.moveRight.MoveAction();
+            print("Move right.");
+        }
     }
 
     public void Jump()
     {
-        actionManager.jump.JumpAction();
-        print("Jump");
+        if (canBeControlled)
+        {
+            actionManager.jump.JumpAction();
+            print("Jump");
+        }
     }
 
     public void MakePoseUp()
     {
-        actionManager.poseUp.PoseAction();
-        StopAllCoroutines();
-        StartCoroutine(ResetPose());
-        print("Pose up.");
+        if (canBeControlled)
+        {
+            actionManager.poseUp.PoseAction();
+            StopAllCoroutines();
+            StartCoroutine(ResetPose());
+            print("Pose up.");
+        }
     }
 
     public void MakePoseDown()
     {
-        actionManager.poseDown.PoseAction();
-        StopAllCoroutines();
-        StartCoroutine(ResetPose());
-        print("Pose down.");
+        if (canBeControlled)
+        {
+            actionManager.poseDown.PoseAction();
+            StopAllCoroutines();
+            StartCoroutine(ResetPose());
+            print("Pose down.");
+        }
     }
 
     public void MakePoseLeft()
     {
-        actionManager.poseLeft.PoseAction();
-        StopAllCoroutines();
-        StartCoroutine(ResetPose());
-        print("Pose left.");
+        if (canBeControlled)
+        {
+            actionManager.poseLeft.PoseAction();
+            StopAllCoroutines();
+            StartCoroutine(ResetPose());
+            print("Pose left.");
+        }
     }
 
     public void MakePoseRight()
     {
-        actionManager.poseRight.PoseAction();
-        StopAllCoroutines();
-        StartCoroutine(ResetPose());
-        print("Pose right.");
+        if (canBeControlled)
+        {
+            actionManager.poseRight.PoseAction();
+            StopAllCoroutines();
+            StartCoroutine(ResetPose());
+            print("Pose right.");
+        }
+    }
+
+    public void DisableControl()
+    {
+        canBeControlled = false;
+    }
+
+    public void EnableControl()
+    {
+        canBeControlled = true;
     }
 
     private IEnumerator ResetPose()

@@ -3,23 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 //using UnityEditor;
 
-public class GameManager : MonoBehaviour {
-
+public class GameManager : MonoBehaviour
+{
     public enum GameState { Initialization, StartMenu, InProgress, GameOver }
     public GameState currentState = GameState.Initialization;
-
-    // Use this for initialization
-    void Start ()
-    {
-
-	}
-
-
-	// Update is called once per frame
-	void Update ()
-    {
-		
-	}
 }
 
 //[CustomEditor(typeof(ButtonCalls))]

@@ -5,6 +5,8 @@ using UnityEngine;
 public class PlayerStatus : MonoBehaviour
 {
     public GameManager gameManager;
+    public Command command;
+    public UIManager uiManager;
     public AnimatorManager animatorManager;
     public AudioManager audioManager;
     public AudioSource playerAudio;
@@ -70,16 +72,19 @@ public class PlayerStatus : MonoBehaviour
         SetCurrentSpeed(speedUpIncrenment);
         if (playerScore > scoreUpLimit)
             playerScore = scoreUpLimit;
+        uiManager.UpdateScore(playerScore);
     }
 
     private void ComboIncrement()
     {
         playerCombo += 1;
+        uiManager.UpdateCombo(playerCombo);
     }
 
     private void ResetCombo()
     {
         playerCombo = 0;
+        uiManager.UpdateCombo(playerCombo);
     }
 
     private void SetCurrentSpeed(float speedChange)
@@ -121,7 +126,12 @@ public class PlayerStatus : MonoBehaviour
         if (currentHealth + healthChange > maxhealth)
             healthChange = maxhealth;
         else if (currentHealth + healthChange < 0)
+        {
             healthChange = 0;
+            uiManager.ShowDeathMenu(playerScore);
+            gameManager.currentState = GameManager.GameState.GameOver;
+            command.DisableControl();
+        }
     }
 
     private IEnumerator ShowCurrentHealth()
@@ -144,7 +154,7 @@ public class PlayerStatus : MonoBehaviour
     public void SlowdownToStartGame()
     {
         if (currentSpeed > initialSpeed)
-            currentSpeed -= 10 * Time.deltaTime;
+            currentSpeed -= Time.deltaTime;
         else
             currentSpeed = initialSpeed;
     }

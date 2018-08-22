@@ -13,7 +13,6 @@ public class PlayerLevelLoader : MonoBehaviour {
     public int levelQueueCapacity = 3;
     
     public GameManager gameManager;
-    public PlayerStatus playerStatus;
 
     public void OnTriggerEnter(Collider other)
     {
@@ -45,17 +44,6 @@ public class PlayerLevelLoader : MonoBehaviour {
             }
         }
     
-    }
-
-    public void OnTriggerStay(Collider other)
-    {
-        if (other.tag == "SlowdownArea")
-        {
-            if (gameManager.currentState == GameManager.GameState.InProgress)
-            {
-                playerStatus.SlowdownToStartGame();
-            }
-        }
     }
 
     private void LoadNextLevelGrp(Object[] myNextLevel)
