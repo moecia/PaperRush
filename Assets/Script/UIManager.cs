@@ -180,4 +180,9 @@ public class UIManager : MonoBehaviour {
     {
         InitializeLocalization();
     }
+
+    public void QuitGame()
+    {
+        Application.Quit();
+    }
 }
