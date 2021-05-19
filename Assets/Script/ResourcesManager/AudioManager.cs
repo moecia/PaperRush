@@ -16,20 +16,4 @@ public class AudioManager : MonoBehaviour
     public AudioClip dead;
 
     public AudioClip empty;
-
-    void Awake()
-    {
-        poseUp = Resources.Load<AudioClip>("Ya");
-        poseDown = Resources.Load<AudioClip>("WeYa");
-        poseLeft = Resources.Load<AudioClip>("Hah");
-        poseRight = Resources.Load<AudioClip>("Woo");        
-        jump = Resources.Load<AudioClip>("JumpSound");
-        getScore = Resources.Load<AudioClip>("Yes");
-        getHit = Resources.Load<AudioClip>("GetHit");
-        dead = Resources.Load<AudioClip>("GameOver");
-    }
-
-    private void Start()
-    {
-    }
 }

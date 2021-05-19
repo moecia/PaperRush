@@ -71,7 +71,10 @@ public class Pose: PlayerAction
     {
         playerStatus.SetCurrentPose(pose);
         playerSprite.sprite = poseSprite;
-        playerAudio.PlayOneShot(poseAudio);
+        if (!playerAudio.isPlaying)
+        {
+            playerAudio.PlayOneShot(poseAudio);
+        }
     }
 
     public Pose() { }
